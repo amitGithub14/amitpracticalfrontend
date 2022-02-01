@@ -9,16 +9,19 @@ const ListUsers = () => {
       .then((data) => {
         setUsers(data);
       });
-  }, []);
+  }, [users]);
 
   const handleDelete = (id) => {
+    // e.preventDefault();
+    var users;
     fetch(`http://localhost:3001/api/users/${id}`, {
       method: 'DELETE',
     })
       .then((res) => res.json())
       .then((data) => {
-        setUsers(data);
+        users = data;
       });
+    setUsers([...users, users]);
   };
 
   return (
@@ -44,7 +47,9 @@ const ListUsers = () => {
             <div style={{ flex: 1 }}>{user.createdAt}</div>
             <div style={{ alignSelf: 'end' }}>
               <button>Edit</button>
-              <button onClick={() => handleDelete(user._id)}>Delete</button>
+              <button onClick={() => handleDelete(user._id)} type="button">
+                Delete
+              </button>
             </div>
           </div>
         ))
