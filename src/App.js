@@ -8,8 +8,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" component={ListUsers} />
-        <Route exact path="/users/:id" component={UsersWithId} />
+        <Route exact path="/" element={<ListUsers />} />
+        <Route exact path="/users/:id" element={<UsersWithId />} />
       </Routes>
     </BrowserRouter>
   );
